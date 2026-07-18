@@ -12,17 +12,19 @@ burns just by filling two addresses in `/admin` (or env vars). No code change ne
 2. Copy the **Pooled connection** string. It looks like:
    `postgresql://user:pass@ep-xxx-pooler.region.aws.neon.tech/neondb?sslmode=require`
 
-## 2. Push the schema to the database
+## 2. Schema / tables
 
-Locally, in the project folder:
+Tables are created **automatically on the first Vercel deploy** — `vercel.json` runs
+`prisma db push` during the build (Vercel's servers can always reach Neon). You don't need to
+run anything locally.
+
+Only if you want to run the DB-backed pages locally (`/admin`, checkout), push the schema from a
+network that can reach Neon (outside mainland China, or via a global-mode VPN):
 
 ```bash
-# put your Neon URL + admin creds in .env  (copy from .env.example)
-cp .env.example .env
-#   edit .env → set DATABASE_URL, ADMIN_PASSWORD, ADMIN_SECRET
+cp .env.example .env    # set DATABASE_URL, ADMIN_PASSWORD, ADMIN_SECRET
 npm install
-npm run db:push        # creates the Order / OrderItem / Setting tables in Neon
-npm run dev            # optional: verify locally at http://localhost:3000
+npm run db:push
 ```
 
 ## 3. Deploy to Vercel
