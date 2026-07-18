@@ -1,0 +1,70 @@
+// ZombiesCat Store — data model (PostgreSQL: Neon/Supabase, works local + Vercel).
+// Catalog lives in code (lib/products.ts). Orders snapshot product name/price at buy time,
+// so there is no Product table to keep in sync. PII (address/email/phone) lives ONLY here.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id            String   @id @default(cuid())
+  orderNo       String   @unique                 // human ref
+  orderRef      String   @unique                 // keccak256(orderNo) — the on-chain binding
+  buyerAddress  String                            // wallet that pays / burns
+  status        String   @default("pending")      // pending | paid | fulfilled | cancelled
+  chainId       Int      @default(4663)
+
+  // money
+  usdCents      Int                               // goods subtotal in USD cents (snapshot)
+  shipUsdCents  Int      @default(0)
+  totalUsdCents Int
+  tokenAmount   String                            // quoted $ZCAT amount, wei (string)
+  tokenRate     String   @default("0")            // ZCAT-per-USD used at quote time
+  txHash        String   @default("")
+  demoPaid      Boolean  @default(false)          // true = marked paid without a real on-chain burn
+  paidAt        DateTime?
+
+  // contact + shipping (PII — off-chain only)
+  recipient     String   @default("")
+  email         String   @default("")
+  phone         String   @default("")
+  country       String   @default("")
+  region        String   @default("")
+  city          String   @default("")
+  addressLine   String   @default("")
+  postalCode    String   @default("")
+  shipKind      String   @default("domestic_free") // domestic_free | overseas_paid
+  note          String   @default("")
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  items OrderItem[]
+
+  @@index([buyerAddress])
+  @@index([status])
+}
+
+model OrderItem {
+  id           String @id @default(cuid())
+  orderId      String
+  order        Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  slug         String
+  nameSnap     String
+  unitUsdCents Int
+  qty          Int
+
+  @@index([orderId])
+}
+
+// Admin-editable key/values: zcat_per_usd, token_address, store_address, overseas_ship_cents
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}

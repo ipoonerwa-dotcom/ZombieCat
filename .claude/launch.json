@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "zombiescat-store",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "5210"],
+      "cwd": "C:\\Users\\ASUS\\Desktop\\zombiescat-store",
+      "port": 5210
+    }
+  ]
+}

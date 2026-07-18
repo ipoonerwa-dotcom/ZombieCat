@@ -1,0 +1,8 @@
+// Plain constants shared by client (wagmi) and server (API routes) — no wagmi import,
+// so server bundles stay light.
+export const TOKEN_ADDRESS = (process.env.NEXT_PUBLIC_TOKEN_ADDRESS ?? "") as `0x${string}` | "";
+export const STORE_ADDRESS = (process.env.NEXT_PUBLIC_STORE_ADDRESS ?? "") as `0x${string}` | "";
+export const TOKEN_DECIMALS = Number(process.env.NEXT_PUBLIC_TOKEN_DECIMALS ?? 18);
+export const TOKEN_SYMBOL = process.env.NEXT_PUBLIC_TOKEN_SYMBOL ?? "ZCAT";
+export const DEFAULT_CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? 4663);
+export const DEAD_ADDRESS = "0x000000000000000000000000000000000000dEaD" as const;
