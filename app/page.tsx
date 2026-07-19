@@ -1,16 +1,25 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 import { useReveal } from "@/lib/useReveal";
 /* eslint-disable @next/next/no-img-element */
 import { PRODUCTS } from "@/lib/products";
+import { fmtCompact } from "@/lib/format";
 import ProductCard from "@/components/ProductCard";
 import ContractBadge from "@/components/ContractBadge";
+
+interface Stats { burnedTokens: number; ordersPaid: number; holders: number; products: number }
 
 export default function Home() {
   const { t } = useI18n();
   useReveal();
+  const [stats, setStats] = useState<Stats | null>(null);
+
+  useEffect(() => {
+    fetch("/api/stats").then((r) => r.json()).then((d) => d.ok && setStats(d)).catch(() => {});
+  }, []);
   // Featured picks per brand request: vinyl doll, graffiti ANC, Weidian doodle
   // headphones, Weidian cola power bank.
   const FEATURED_SLUGS = ["vinyl-doll", "anc-headphones", "doodle-headphones", "cola-powerbank"];
@@ -137,15 +146,15 @@ export default function Home() {
           <div className="card reveal" style={{ padding: "6px 18px" }}>
             <div className="stats-strip">
               <div className="stat">
-                <div className="stat-num">1.2M</div>
+                <div className="stat-num">{stats ? fmtCompact(stats.burnedTokens) : "—"}</div>
                 <div className="stat-label">{t("home.stats.burned")}</div>
               </div>
               <div className="stat">
-                <div className="stat-num">340</div>
+                <div className="stat-num">{stats ? stats.ordersPaid.toLocaleString("en-US") : "—"}</div>
                 <div className="stat-label">{t("home.stats.orders")}</div>
               </div>
               <div className="stat">
-                <div className="stat-num">1,284</div>
+                <div className="stat-num">{stats ? stats.holders.toLocaleString("en-US") : "—"}</div>
                 <div className="stat-label">{t("home.stats.holders")}</div>
               </div>
               <div className="stat">
@@ -155,7 +164,7 @@ export default function Home() {
             </div>
           </div>
           <p className="mini-note" style={{ textAlign: "center", marginTop: 10 }}>
-            * demo figures — burn/orders/holders are placeholders until launch
+            * {t("home.stats.live")}
           </p>
         </div>
       </section>

@@ -145,7 +145,7 @@ export default function CartPage() {
           <p style={{ color: "var(--muted)", fontSize: 14, marginBottom: 8 }}>
             {lang === "zh" ? "订单号" : "Order No."} · <b style={{ fontFamily: "var(--mono)", color: "var(--toxic)" }}>{done}</b>
           </p>
-          <p className="mini-note" style={{ maxWidth: 440, margin: "0 auto 24px" }}>{t("checkout.demonote")}</p>
+          <p className="mini-note" style={{ maxWidth: 440, margin: "0 auto 24px" }}>{t("checkout.donenote")}</p>
           <Link href="/shop" className="btn btn-primary">{t("cart.continue")}</Link>
         </div>
       </div>
@@ -284,7 +284,7 @@ export default function CartPage() {
                 {shortAddr(address)} · Robinhood Chain
               </p>
             )}
-            <div className="notice" style={{ marginTop: 14, fontSize: 12 }}>{t("checkout.demonote")}</div>
+            <div className="notice-red" style={{ marginTop: 14, fontSize: 12 }}>{t("checkout.paynote")}</div>
           </div>
         </div>
       </div>

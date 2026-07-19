@@ -35,6 +35,7 @@ const DICT: Record<Lang, Record<string, string>> = {
     "home.stats.orders": "累计订单",
     "home.stats.holders": "持有地址",
     "home.stats.products": "上架周边",
+    "home.stats.live": "链上实时数据 · 销毁量与持有人来自 Robinhood 链",
 
     "home.how.kicker": "运作机制",
     "home.how.title": "链上消费，链下发货",
@@ -113,7 +114,8 @@ const DICT: Record<Lang, Record<string, string>> = {
     "checkout.paying": "处理中…",
     "checkout.required": "请填写所有必填项",
     "checkout.connectfirst": "请先连接钱包",
-    "checkout.demonote": "代币尚未发行，当前为演示结算：不会真实扣币，仅记录订单以预览流程。",
+    "checkout.paynote": "付款将连续签署两笔交易：授权 + 销毁。$ZCAT 一经销毁进黑洞不可撤回。本站不构成投资建议。",
+    "checkout.donenote": "你的 $ZCAT 已销毁，订单已记录。我们会尽快按你填写的地址发货，如需核对可凭订单号联系我们。",
 
     "nav.ip": "IP 文化",
     "nav.founder": "创始人",
@@ -207,7 +209,7 @@ const DICT: Record<Lang, Record<string, string>> = {
     "memes.hint": "* 素材版权归魔鬼猫官方所有,仅供社区传播使用",
 
     "footer.tag": "魔鬼猫 · ZOMBIESCAT — 吞噬负能量",
-    "footer.disc": "本站为魔鬼猫 RWA 周边商城演示。$ZCAT 尚未发行，谨防假冒代币与钓鱼链接。周边为实物商品，链上支付即销毁、链下发货。",
+    "footer.disc": "魔鬼猫 RWA 周边商城 —— 用 $ZCAT 在 Robinhood 链上消费，代币即刻销毁进黑洞，实物周边发到你手上。请认准页面上的官方合约地址，谨防假冒代币与钓鱼链接。本站不构成投资建议。",
     "common.usd": "美元",
     "common.loading": "加载中…",
   },
@@ -240,6 +242,7 @@ const DICT: Record<Lang, Record<string, string>> = {
     "home.stats.orders": "Total orders",
     "home.stats.holders": "Holders",
     "home.stats.products": "Products",
+    "home.stats.live": "Live on-chain data · burned & holders read from Robinhood Chain",
 
     "home.how.kicker": "HOW IT WORKS",
     "home.how.title": "Spend on-chain, ship off-chain",
@@ -318,7 +321,8 @@ const DICT: Record<Lang, Record<string, string>> = {
     "checkout.paying": "Processing…",
     "checkout.required": "Please fill in all required fields",
     "checkout.connectfirst": "Connect your wallet first",
-    "checkout.demonote": "Token not issued yet — this is a demo checkout: no tokens are actually spent, the order is only recorded to preview the flow.",
+    "checkout.paynote": "Paying signs two transactions: approve + burn. Burned $ZCAT goes to the black hole and is irreversible. Not financial advice.",
+    "checkout.donenote": "Your $ZCAT has been burned and your order is recorded. We'll ship to the address you provided — keep your order number for reference.",
 
     "nav.ip": "The IP",
     "nav.founder": "Founder",
@@ -412,7 +416,7 @@ const DICT: Record<Lang, Record<string, string>> = {
     "memes.hint": "* Artwork © ZombiesCat official — for community use",
 
     "footer.tag": "ZOMBIESCAT — DEVOUR NEGATIVE ENERGY",
-    "footer.disc": "Demo of the ZombiesCat RWA merch store. $ZCAT has not launched — beware of fake tokens and phishing links. Merch is physical; on-chain payment burns, fulfillment ships off-chain.",
+    "footer.disc": "ZombiesCat RWA merch store — spend $ZCAT on Robinhood Chain, tokens burn instantly, real merch ships to your door. Always verify the official contract address shown on this site; beware of fake tokens and phishing links. Not financial advice.",
     "common.usd": "USD",
     "common.loading": "Loading…",
   },
