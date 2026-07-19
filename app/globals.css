@@ -371,10 +371,31 @@ h1, h2, h3 { font-weight: 800; line-height: 1.06; letter-spacing: -0.02em; font-
 .ca-link:hover { color: var(--red); border-color: var(--red); }
 
 .ca-hero {
-  background: rgba(238,29,43,0.05); border: 1px solid var(--line);
-  border-radius: 999px; padding: 8px 8px 8px 16px; margin-top: 22px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  background: linear-gradient(120deg, rgba(238,29,43,0.14), rgba(238,29,43,0.04));
+  border: 1.5px solid rgba(238,29,43,0.5);
+  border-radius: 14px; padding: 14px 18px; margin-top: 30px;
+  box-shadow: 0 0 0 1px rgba(238,29,43,0.12) inset, 0 8px 34px -12px rgba(238,29,43,0.45);
+  animation: ca-glow 3s ease-in-out infinite;
 }
-.ca-hero .ca-addr { background: transparent; border: none; padding: 4px 4px; }
+@keyframes ca-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(238,29,43,0.12) inset, 0 8px 34px -14px rgba(238,29,43,0.4); }
+  50% { box-shadow: 0 0 0 1px rgba(238,29,43,0.22) inset, 0 10px 46px -10px rgba(238,29,43,0.7); }
+}
+.ca-hero .ca-label { font-size: 12.5px; letter-spacing: 0.16em; }
+.ca-hero .ca-label .ca-sym { font-size: 15px; }
+.ca-hero .ca-addr {
+  background: rgba(8,6,7,0.55); border: 1px solid rgba(238,29,43,0.3);
+  padding: 10px 15px; font-size: 15.5px; font-weight: 600; letter-spacing: 0.01em;
+}
+.ca-hero .ca-addr:hover { background: rgba(238,29,43,0.1); }
+.ca-hero .ca-copy svg { width: 16px; height: 16px; }
+.ca-hero .ca-link { width: 38px; height: 38px; border-color: rgba(238,29,43,0.3); }
+.ca-hero .ca-link svg { width: 16px; height: 16px; }
+@media (max-width: 560px) {
+  .ca-hero { width: 100%; }
+  .ca-hero .ca-addr { font-size: 14px; }
+}
 
 @media (max-width: 560px) {
   .ca-full { display: none; }
