@@ -59,6 +59,13 @@ export const PRODUCTS: Product[] = [
     image: "/products/jd-b23-clip.jpg", art: "🎧", sort: 5,
   },
   {
+    slug: "cola-powerbank",
+    name: "Little Cola Power Bank",
+    desc: "The negativity-sipping pocket guardian — a cola-bottle power bank that keeps your phone alive while the devil-cat drinks the bad vibes.",
+    category: "electronics", priceUsdCents: 13900, accent: RED,
+    image: "/products/wd-cola-powerbank.jpg", art: "🔋", sort: 4,
+  },
+  {
     slug: "doodle-headphones",
     name: "Doodle Wireless Headphones",
     desc: "Over-ear wireless headphones wrapped in all-over ZombiesCat doodle print — the official Weidian favourite, now burnable with $ZCAT.",

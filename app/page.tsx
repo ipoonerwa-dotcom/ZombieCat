@@ -11,8 +11,8 @@ export default function Home() {
   const { t } = useI18n();
   useReveal();
   // Featured picks per brand request: vinyl doll, graffiti ANC, Weidian doodle
-  // headphones, gold crest as the fourth (3rd/4th links they sent were the same item).
-  const FEATURED_SLUGS = ["vinyl-doll", "anc-headphones", "doodle-headphones", "jd-gold-anc"];
+  // headphones, Weidian cola power bank.
+  const FEATURED_SLUGS = ["vinyl-doll", "anc-headphones", "doodle-headphones", "cola-powerbank"];
   const featured = FEATURED_SLUGS
     .map((s) => PRODUCTS.find((p) => p.slug === s))
     .filter((p): p is (typeof PRODUCTS)[number] => Boolean(p));
