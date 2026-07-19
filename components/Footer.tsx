@@ -20,6 +20,10 @@ export default function Footer() {
           <div className="footer-links" style={{ alignItems: "flex-start" }}>
             <Link href="/">{t("nav.home")}</Link>
             <Link href="/shop">{t("nav.shop")}</Link>
+            <Link href="/ip">{t("nav.ip")}</Link>
+            <Link href="/founder">{t("nav.founder")}</Link>
+            <Link href="/memes">{t("nav.memes")}</Link>
+            <Link href="/video">{t("nav.video")}</Link>
             <Link href="/cart">{t("nav.cart")}</Link>
           </div>
         </div>

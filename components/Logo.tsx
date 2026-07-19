@@ -11,11 +11,11 @@ export default function Logo({ size = 30, animated = true }: { size?: number; an
       aria-hidden
       className={animated ? "zc-logo" : undefined}
     >
-      {/* ears */}
-      <path d="M12 24 L16 5 L29 17 Z" fill="#ee1d2b" />
-      <path d="M52 24 L48 5 L35 17 Z" fill="#ee1d2b" />
+      {/* ears — short, rounded (per official model, not sharp) */}
+      <path d="M13 26 Q12 10 20 8 Q28 7 30 18 Z" fill="#ee1d2b" />
+      <path d="M51 26 Q52 10 44 8 Q36 7 34 18 Z" fill="#ee1d2b" />
       {/* head/body block */}
-      <rect x="8" y="11" width="48" height="48" rx="17" fill="#ee1d2b" />
+      <rect x="8" y="13" width="48" height="46" rx="17" fill="#ee1d2b" />
       {/* eyes: white disc + red X */}
       <g className="zc-eye" style={{ transformOrigin: "23px 27px" }}>
         <circle cx="23" cy="27" r="6.4" fill="#fff" />

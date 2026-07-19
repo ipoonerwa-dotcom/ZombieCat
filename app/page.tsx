@@ -10,7 +10,12 @@ import ProductCard from "@/components/ProductCard";
 export default function Home() {
   const { t } = useI18n();
   useReveal();
-  const featured = PRODUCTS.slice(0, 4);
+  // Featured picks per brand request: vinyl doll, graffiti ANC, Weidian doodle
+  // headphones, gold crest as the fourth (3rd/4th links they sent were the same item).
+  const FEATURED_SLUGS = ["vinyl-doll", "anc-headphones", "doodle-headphones", "jd-gold-anc"];
+  const featured = FEATURED_SLUGS
+    .map((s) => PRODUCTS.find((p) => p.slug === s))
+    .filter((p): p is (typeof PRODUCTS)[number] => Boolean(p));
 
   const HOW = [
     { k: "1", accent: "var(--toxic)" },

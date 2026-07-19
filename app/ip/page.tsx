@@ -1,6 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
+import { useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 import { useReveal } from "@/lib/useReveal";
@@ -25,6 +26,7 @@ const GALLERY = [
 
 export default function IpPage() {
   const { t, lang } = useI18n();
+  const [lightbox, setLightbox] = useState<{ src: string; cap: string } | null>(null);
   useReveal();
 
   return (
@@ -108,14 +110,48 @@ export default function IpPage() {
           <p className="lead reveal reveal-d1" style={{ marginBottom: 26 }}>{t("ip.gallery.sub")}</p>
           <div className="gallery">
             {GALLERY.map((g, i) => (
-              <div key={g.src} className={`gallery-item reveal reveal-d${(i % 3) + 1}`}>
+              <div
+                key={g.src}
+                className={`gallery-item reveal reveal-d${(i % 3) + 1}`}
+                onClick={() => setLightbox(g)}
+              >
                 <img src={g.src} alt={g.cap} loading="lazy" />
                 <div className="cap">{g.cap}</div>
+                <a
+                  className="dl"
+                  href={g.src}
+                  download={`zombiescat-${g.cap.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}${g.src.slice(g.src.lastIndexOf("."))}`}
+                  title={t("gallery.download")}
+                  aria-label={t("gallery.download")}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                </a>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* LIGHTBOX */}
+      {lightbox && (
+        <div className="lightbox" onClick={() => setLightbox(null)}>
+          <img src={lightbox.src} alt={lightbox.cap} />
+          <div className="lb-cap">{lightbox.cap}</div>
+          <a
+            className="btn btn-primary btn-sm lb-dl"
+            href={lightbox.src}
+            download
+            onClick={(e) => e.stopPropagation()}
+          >
+            ↓ {t("gallery.download")}
+          </a>
+        </div>
+      )}
     </>
   );
 }

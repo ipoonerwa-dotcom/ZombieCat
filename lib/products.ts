@@ -59,6 +59,13 @@ export const PRODUCTS: Product[] = [
     image: "/products/jd-b23-clip.jpg", art: "🎧", sort: 5,
   },
   {
+    slug: "doodle-headphones",
+    name: "Doodle Wireless Headphones",
+    desc: "Over-ear wireless headphones wrapped in all-over ZombiesCat doodle print — the official Weidian favourite, now burnable with $ZCAT.",
+    category: "electronics", priceUsdCents: 8900, accent: RED,
+    image: "/products/wd-doodle-headphones.jpg", art: "🎧", sort: 5,
+  },
+  {
     slug: "anc-headphones",
     name: "Graffiti ANC Headphones",
     desc: "Active noise cancelling — detects ambient noise and cancels it in real time for a purer world of music. Signature red graffiti shell.",

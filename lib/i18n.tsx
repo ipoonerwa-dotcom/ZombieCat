@@ -116,7 +116,28 @@ const DICT: Record<Lang, Record<string, string>> = {
     "checkout.demonote": "代币尚未发行，当前为演示结算：不会真实扣币，仅记录订单以预览流程。",
 
     "nav.ip": "IP 文化",
+    "nav.founder": "创始人",
     "nav.memes": "MEME",
+    "nav.video": "视频",
+
+    "founder.kicker": "IP TREND ARTIST · 创始人",
+    "founder.title": "猫爹雨海",
+    "founder.sub": "ZOMBIESCAT 创始人 · MOREMOON CARTOON CEO",
+    "founder.cred.1": "吉林艺术学院 · 视觉传达",
+    "founder.cred.2": "纽约帕森斯设计学院 · 艺术管理",
+    "founder.cred.3": "清华大学 · 工商管理硕士(MBA)",
+    "founder.cred.4": "MOREMOON CARTOON 创始人 & CEO",
+    "founder.bio.1": "雨海 1985 年出生于中国大石头镇。从吉林艺术学院视觉传达专业毕业后,赴纽约帕森斯设计学院深造艺术管理。怀着对艺术、动画与商业的热爱,他立志打造一个世界级、同时深深扎根于中国文化的超级 IP——魔鬼猫在 2010 年代初由此诞生。",
+    "founder.bio.2": "凭借在当代艺术与创意产业十余年的深耕,雨海和他创造的魔鬼猫 IP 在国内外获得了巨大声量。2021 与 2022 年,他两度登上「国际潮流艺术家影响力榜」。",
+    "founder.bio.3": "他的作品以时尚潮流、戏剧冲突与奇异实验为主。通过魔鬼猫 IP,他用简洁抽象的造型、独特的视觉、明亮的色彩与大胆的创造力构建起自己的艺术语境,坚定践行中国当代潮流艺术家的梦想。",
+    "founder.rank": "两度登榜「国际潮流艺术家影响力榜」(2021 & 2022)",
+
+    "video.kicker": "FILM · 宣传片",
+    "video.title": "魔鬼猫宣传片",
+    "video.tbc": "TO BE CONTINUED",
+    "video.sub": "视频内容制作中,敬请期待。",
+
+    "gallery.download": "下载原图",
 
     "home.ip.kicker": "MEET THE IP · 认识魔鬼猫",
     "home.ip.title": "吞噬负能量的外星猫",
@@ -296,7 +317,28 @@ const DICT: Record<Lang, Record<string, string>> = {
     "checkout.demonote": "Token not issued yet — this is a demo checkout: no tokens are actually spent, the order is only recorded to preview the flow.",
 
     "nav.ip": "The IP",
+    "nav.founder": "Founder",
     "nav.memes": "Memes",
+    "nav.video": "Video",
+
+    "founder.kicker": "IP TREND ARTIST",
+    "founder.title": "Yuhai (Mao Die Yuhai)",
+    "founder.sub": "Founder of ZOMBIESCAT · CEO of MOREMOON CARTOON",
+    "founder.cred.1": "Jilin University of Arts · Visual Communication",
+    "founder.cred.2": "Parsons School of Design, NYC · Art Management",
+    "founder.cred.3": "Tsinghua University · MBA",
+    "founder.cred.4": "Founder & CEO, MOREMOON CARTOON Co., Ltd",
+    "founder.bio.1": "Yuhai was born in Big Rock Town, China, in 1985. After graduating from Jilin University of Arts in visual communication, he went on to study art management at Parsons School of Design in New York. Driven by a passion for art, animation and business, he set out to build an IP empire that is world-class yet proudly rooted in Chinese heritage — and ZOMBIESCAT was born in the early 2010s.",
+    "founder.bio.2": "With 10+ years in contemporary art and the creative industries, Yuhai and the ZOMBIESCAT IP have gained major traction both in China and internationally. In 2021 and 2022 he was twice ranked on the International Trend Artist Influence Ranking.",
+    "founder.bio.3": "His work centers on fashion trends, dramatic conflict and strange experiments. Through ZOMBIESCAT he builds an artistic language of simple, abstract forms, a unique vision, bright color and bold creativity — firmly realizing the dream of Chinese contemporary IP trend artists.",
+    "founder.rank": "Twice ranked · International Trend Artist Influence Ranking (2021 & 2022)",
+
+    "video.kicker": "FILM",
+    "video.title": "ZombiesCat Films",
+    "video.tbc": "TO BE CONTINUED",
+    "video.sub": "Video content is in production — stay tuned.",
+
+    "gallery.download": "Download",
 
     "home.ip.kicker": "MEET THE IP",
     "home.ip.title": "The alien cat that devours negativity",

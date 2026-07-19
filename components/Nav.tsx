@@ -1,5 +1,6 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,8 +10,18 @@ import WalletButton from "./WalletButton";
 import { useI18n } from "@/lib/i18n";
 import { useCart } from "@/lib/cart";
 
+const LINKS: { href: string; key: string }[] = [
+  { href: "/", key: "nav.home" },
+  { href: "/shop", key: "nav.shop" },
+  { href: "/ip", key: "nav.ip" },
+  { href: "/founder", key: "nav.founder" },
+  { href: "/memes", key: "nav.memes" },
+  { href: "/video", key: "nav.video" },
+];
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const { t } = useI18n();
   const { count } = useCart();
   const pathname = usePathname();
@@ -22,25 +33,22 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const link = (href: string, key: string) => (
-    <Link href={href} className={pathname === href ? "active" : ""}>
-      {t(key)}
-    </Link>
-  );
+  // close the drawer on route change
+  useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
+    <nav className={`nav ${scrolled || open ? "scrolled" : ""}`}>
       <div className="wrap nav-inner">
         <Link href="/" className="nav-logo">
           <Logo />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/brand/logo-official.png" alt="魔鬼猫 ZOMBIESCAT" style={{ height: 22, width: "auto" }} />
         </Link>
         <div className="nav-links">
-          {link("/", "nav.home")}
-          {link("/shop", "nav.shop")}
-          {link("/ip", "nav.ip")}
-          {link("/memes", "nav.memes")}
+          {LINKS.map((l) => (
+            <Link key={l.href} href={l.href} className={pathname === l.href ? "active" : ""}>
+              {t(l.key)}
+            </Link>
+          ))}
         </div>
         <div className="nav-right">
           <LangToggle />
@@ -52,7 +60,21 @@ export default function Nav() {
             {count > 0 && <span className="cart-badge">{count}</span>}
           </Link>
           <WalletButton />
+          {/* mobile hamburger */}
+          <button className={`burger ${open ? "on" : ""}`} aria-label="menu" onClick={() => setOpen((v) => !v)}>
+            <span /><span /><span />
+          </button>
         </div>
+      </div>
+
+      {/* mobile drawer */}
+      <div className={`mobile-menu ${open ? "open" : ""}`}>
+        {LINKS.map((l) => (
+          <Link key={l.href} href={l.href} className={pathname === l.href ? "active" : ""}>
+            {t(l.key)}
+          </Link>
+        ))}
+        <Link href="/cart">{t("nav.cart")}{count > 0 ? ` (${count})` : ""}</Link>
       </div>
     </nav>
   );
