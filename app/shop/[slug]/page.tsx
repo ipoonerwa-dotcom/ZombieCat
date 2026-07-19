@@ -7,8 +7,6 @@ import { getProduct } from "@/lib/products";
 import { useI18n } from "@/lib/i18n";
 import { useCart } from "@/lib/cart";
 import { usd } from "@/lib/format";
-import { usdCentsToTokens, DEFAULT_ZCAT_PER_USD } from "@/lib/pricing";
-import { TOKEN_SYMBOL } from "@/lib/chain";
 
 export default function ProductPage() {
   const params = useParams<{ slug: string }>();
@@ -30,7 +28,6 @@ export default function ProductPage() {
 
   const name = product.name; // English-only product copy
   const desc = product.desc;
-  const zcat = usdCentsToTokens(product.priceUsdCents, DEFAULT_ZCAT_PER_USD) * qty;
 
   const doAdd = () => {
     add(product.slug, qty);
@@ -62,12 +59,9 @@ export default function ProductPage() {
           <div>
             <div className="kicker">{t(`shop.${product.category}`)}</div>
             <h1 style={{ fontSize: "clamp(28px,4vw,42px)", textTransform: "uppercase", marginBottom: 14 }}>{name}</h1>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 6 }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 20 }}>
               <span style={{ fontFamily: "var(--mono)", fontWeight: 800, fontSize: 30 }}>{usd(product.priceUsdCents)}</span>
               <span style={{ color: "var(--muted)", fontSize: 13 }}>{t("common.usd")}</span>
-            </div>
-            <div style={{ fontFamily: "var(--mono)", color: "var(--toxic)", fontSize: 14, marginBottom: 20 }}>
-              ≈ {zcat.toLocaleString("en-US")} {TOKEN_SYMBOL}
             </div>
 
             <p style={{ color: "var(--muted)", fontSize: 14.5, lineHeight: 1.75, marginBottom: 22 }}>{desc}</p>
