@@ -6,6 +6,7 @@ import { useReveal } from "@/lib/useReveal";
 /* eslint-disable @next/next/no-img-element */
 import { PRODUCTS } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
+import ContractBadge from "@/components/ContractBadge";
 
 export default function Home() {
   const { t } = useI18n();
@@ -51,6 +52,7 @@ export default function Home() {
             <p style={{ marginTop: 20, fontFamily: "var(--mono)", fontSize: 12, color: "var(--dim)", letterSpacing: "0.06em" }}>
               {t("home.hero.free")}
             </p>
+            <ContractBadge variant="hero" />
           </div>
           <div className="hero-visual hero-visual-spin">
             <img src="/brand/zombiescat-spin.gif" alt="ZombiesCat spinning" className="hero-spin" />

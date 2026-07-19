@@ -139,6 +139,10 @@ const DICT: Record<Lang, Record<string, string>> = {
 
     "gallery.download": "下载原图",
 
+    "token.official": "官方合约",
+    "token.copy": "复制合约地址",
+    "token.verify": "在区块浏览器查看",
+
     "home.ip.kicker": "MEET THE IP · 认识魔鬼猫",
     "home.ip.title": "吞噬负能量的外星猫",
     "home.ip.desc": "魔鬼猫来自 2666 年的 ZC66 星球——一只天生不能吸血的僵尸猫,只吞噬人类的负面能量与负面情绪。中国暗黑潮流超级 IP:100+ 品牌联名,近万家门店,¥1B+ 零售营收。",
@@ -339,6 +343,10 @@ const DICT: Record<Lang, Record<string, string>> = {
     "video.sub": "Video content is in production — stay tuned.",
 
     "gallery.download": "Download",
+
+    "token.official": "Official contract",
+    "token.copy": "Copy contract address",
+    "token.verify": "View on block explorer",
 
     "home.ip.kicker": "MEET THE IP",
     "home.ip.title": "The alien cat that devours negativity",
