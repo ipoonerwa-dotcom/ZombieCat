@@ -3,7 +3,8 @@ import { keccak256, toHex, isAddress, decodeEventLog, getAddress } from "viem";
 import { prisma } from "./prisma";
 import { PRODUCTS } from "./products";
 import { usdCentsToTokenWei } from "./pricing";
-import { getZcatPerUsd, getOverseasShipCents, getSetting, SETTING_KEYS } from "./settings";
+import { getOverseasShipCents, getSetting, SETTING_KEYS } from "./settings";
+import { getLiveRate } from "./livePrice";
 import { TOKEN_DECIMALS, DEFAULT_CHAIN_ID } from "./tokenConfig";
 import { publicClientFor } from "./serverChain";
 import { STORE_ABI } from "./storeAbi";
@@ -62,7 +63,8 @@ export async function createOrder(input: CheckoutInput) {
   const shipUsdCents = region === "overseas" ? await getOverseasShipCents() : 0;
   const totalUsdCents = usdCents + shipUsdCents;
 
-  const rate = await getZcatPerUsd();
+  const live = await getLiveRate(); // on-chain price, manual fallback inside
+  const rate = live.zcatPerUsd;
   const tokenAmount = usdCentsToTokenWei(totalUsdCents, rate, TOKEN_DECIMALS).toString();
 
   const orderNo = genOrderNo();

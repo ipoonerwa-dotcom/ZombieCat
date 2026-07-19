@@ -34,6 +34,7 @@ export default function AdminPage() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const [settings, setSettings] = useState<Record<string, string>>({});
   const [savedMsg, setSavedMsg] = useState("");
+  const [live, setLive] = useState<{ zcatPerUsd: number; priceUsd: number; source: string } | null>(null);
 
   const load = useCallback(async () => {
     const params = new URLSearchParams();
@@ -47,7 +48,10 @@ export default function AdminPage() {
 
   useEffect(() => { load(); }, [load]);
   useEffect(() => {
-    if (authed) fetch("/api/admin/settings").then((r) => r.json()).then((d) => d.ok && setSettings(d.settings));
+    if (authed) {
+      fetch("/api/admin/settings").then((r) => r.json()).then((d) => d.ok && setSettings(d.settings));
+      fetch("/api/rate").then((r) => r.json()).then((d) => d.ok && setLive(d)).catch(() => {});
+    }
   }, [authed]);
 
   const login = async () => {
@@ -122,9 +126,18 @@ export default function AdminPage() {
         {/* settings */}
         <div className="card" style={{ marginTop: 18 }}>
           <div className="kicker" style={{ marginBottom: 14 }}>SETTINGS</div>
+          {live && (
+            <div className={live.source === "manual" ? "notice" : "notice-red"} style={{ marginBottom: 14, fontSize: 12.5 }}>
+              LIVE RATE ({live.source}): 1 USD ≈ {Math.round(live.zcatPerUsd).toLocaleString("en-US")} ZCAT
+              · price ${live.priceUsd.toFixed(9)}
+              {live.source === "manual"
+                ? " — on-chain price unavailable, using the manual fallback below"
+                : " — read from the Flap curve/pool on-chain; the manual rate below is only a fallback"}
+            </div>
+          )}
           <div className="field-row" style={{ marginBottom: 12 }}>
             <div className="field">
-              <label>$ZCAT per 1 USD (burn rate)</label>
+              <label>Manual fallback rate ($ZCAT per 1 USD)</label>
               <input className="input" value={settings.zcat_per_usd ?? ""} onChange={(e) => setSettings((s) => ({ ...s, zcat_per_usd: e.target.value }))} />
             </div>
             <div className="field">

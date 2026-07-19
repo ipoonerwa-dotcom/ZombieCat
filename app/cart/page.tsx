@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAccount, useWriteContract, usePublicClient } from "wagmi";
 import { useI18n } from "@/lib/i18n";
@@ -31,10 +31,25 @@ export default function CartPage() {
   const [err, setErr] = useState("");
   const [stage, setStage] = useState<Stage>("idle");
   const [done, setDone] = useState<string | null>(null);
+  const [liveRate, setLiveRate] = useState<number>(DEFAULT_ZCAT_PER_USD);
+  const [rateSource, setRateSource] = useState<string>("manual");
+
+  // live on-chain rate for display (checkout re-quotes server-side anyway)
+  useEffect(() => {
+    fetch("/api/rate")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.ok && d.zcatPerUsd > 0) {
+          setLiveRate(d.zcatPerUsd);
+          setRateSource(d.source);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const shipCents = region === "cn" ? 0 : OVERSEAS_FLAT_CENTS;
   const totalCents = subtotalUsdCents + shipCents;
-  const zcatTotal = usdCentsToTokens(totalCents, DEFAULT_ZCAT_PER_USD);
+  const zcatTotal = usdCentsToTokens(totalCents, liveRate);
   const busy = stage !== "idle";
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -254,7 +269,10 @@ export default function CartPage() {
             <div className="summary-row"><span style={{ color: "var(--muted)" }}>{t("checkout.willburn")}</span>
               <span className="v" style={{ color: "var(--toxic)" }}>{zcatTotal.toLocaleString("en-US")} {TOKEN_SYMBOL}</span></div>
             <div className="burn-note">🔥 {lang === "zh" ? "支付即销毁，永不回流" : "burned on payment, never returns"}</div>
-            <div className="mini-note" style={{ marginTop: 6 }}>{t("checkout.rate")}: 1 USD = {DEFAULT_ZCAT_PER_USD.toLocaleString("en-US")} {TOKEN_SYMBOL}</div>
+            <div className="mini-note" style={{ marginTop: 6 }}>
+              {t("checkout.rate")}: 1 USD ≈ {Math.round(liveRate).toLocaleString("en-US")} {TOKEN_SYMBOL}
+              {rateSource !== "manual" && <span style={{ color: "var(--red)" }}> · LIVE</span>}
+            </div>
 
             {err && <div className="notice" style={{ marginTop: 14 }}>{err}</div>}
 
