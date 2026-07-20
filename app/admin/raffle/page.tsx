@@ -125,9 +125,11 @@ export default function AdminRafflePage() {
         </div>
         <div style={{ display: "flex", gap: 10, marginTop: 16, flexWrap: "wrap" }}>
           <button className="btn btn-primary btn-sm" onClick={saveConfig}>Save config</button>
+          {st?.config.status === "soon" && <button className="btn btn-primary btn-sm" onClick={() => setStatus("open")}>▶ Open entries</button>}
+          {st?.config.status === "open" && <button className="btn btn-ghost btn-sm" onClick={() => setStatus("soon")}>Set “Coming soon”</button>}
           {st?.config.status === "open" && <button className="btn btn-ghost btn-sm" onClick={() => setStatus("closed")}>Close entries</button>}
           {st?.config.status === "closed" && <button className="btn btn-ghost btn-sm" onClick={() => setStatus("open")}>Re-open entries</button>}
-          {st?.config.status !== "drawn" && <button className="btn btn-primary btn-sm" onClick={draw} style={{ marginLeft: "auto" }}>🎲 Draw winner</button>}
+          {(st?.config.status === "open" || st?.config.status === "closed") && <button className="btn btn-primary btn-sm" onClick={draw} style={{ marginLeft: "auto" }}>🎲 Draw winner</button>}
           {st?.config.status === "drawn" && <button className="btn btn-ghost btn-sm" onClick={reopen} style={{ marginLeft: "auto", color: "var(--danger)" }}>Reset draw</button>}
         </div>
         {st?.winner && (

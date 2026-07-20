@@ -11,7 +11,7 @@ import { shortAddr } from "@/lib/format";
 
 type Range = [number, number];
 interface PublicState {
-  config: { status: "open" | "closed" | "drawn"; deadline: string; tokensPerTicket: number; prizeSlug: string; prizeCount: number };
+  config: { status: "soon" | "open" | "closed" | "drawn"; deadline: string; tokensPerTicket: number; prizeSlug: string; prizeCount: number };
   prize: { slug: string; name: string; image: string; priceUsdCents: number };
   totalTickets: number;
   participants: number;
@@ -114,25 +114,38 @@ export default function RafflePage() {
             <h3 className="rp-name">{pub?.prize.name ?? "—"}</h3>
             <div className={`rp-status rp-${status}`}>
               <span className="dot" />
-              {status === "open" ? L.open : status === "closed" ? L.closedS : L.drawnS}
+              {status === "open" ? L.open : status === "soon" ? L.soonS : status === "closed" ? L.closedS : L.drawnS}
             </div>
             <div className="rp-count-row">
               <div><div className="rp-k">{L.totalTickets}</div><div className="rp-v">{fmtNum(pub?.totalTickets ?? 0)}</div></div>
               <div><div className="rp-k">{L.players}</div><div className="rp-v">{fmtNum(pub?.participants ?? 0)}</div></div>
             </div>
-            {deadlineMs > 0 && status !== "drawn" && (
+            {deadlineMs > 0 && (status === "open" || status === "closed") && (
               <div className="rp-countdown">
                 <div className="rp-k">{remaining > 0 ? L.endsIn : L.ended}</div>
                 {remaining > 0 && <Countdown ms={remaining} zh={zh} />}
                 {remaining <= 0 && <div className="rp-v" style={{ color: "var(--red)" }}>{L.awaitingDraw}</div>}
               </div>
             )}
-            {!deadlineMs && status !== "drawn" && <div className="rp-countdown"><div className="rp-k">{L.endsIn}</div><div className="rp-v">{L.tba}</div></div>}
+            {!deadlineMs && status === "open" && <div className="rp-countdown"><div className="rp-k">{L.endsIn}</div><div className="rp-v">{L.tba}</div></div>}
           </div>
 
           {/* ENTRY / STATUS */}
           <div className="raffle-panel card">
-            {!isConnected && (
+            {status === "soon" && (
+              <div className="raffle-connect">
+                <div className="rc-emoji">⏳</div>
+                <h3>{L.soonTitle}</h3>
+                <p>{L.soonSub(perTicket)}</p>
+                {isConnected && me ? (
+                  <div className="soon-preview">{L.soonEligible(me.available)}</div>
+                ) : (
+                  <WalletButton />
+                )}
+              </div>
+            )}
+
+            {status !== "soon" && !isConnected && (
               <div className="raffle-connect">
                 <div className="rc-emoji">🎟️</div>
                 <h3>{L.connectTitle}</h3>
@@ -141,7 +154,7 @@ export default function RafflePage() {
               </div>
             )}
 
-            {isConnected && me && (
+            {status !== "soon" && isConnected && me && (
               <>
                 <div className="raffle-stats">
                   <div className="rs"><div className="rs-k">{L.balance}</div><div className="rs-v">{fmtNum(balTokens)} <span>${TOKEN_SYMBOL}</span></div></div>
@@ -277,7 +290,10 @@ const ZH = {
   title: "持币抽奖",
   sub: (n: number) => `每持有 ${n.toLocaleString()} 枚 $${TOKEN_SYMBOL} = 1 张带编号奖券。截止后链上开出一个中奖号,赢取实物奖品。`,
   prizeTag: "本期奖品",
-  open: "进行中 · 可参与", closedS: "已截止 · 待开奖", drawnS: "已开奖",
+  open: "进行中 · 可参与", soonS: "即将开放", closedS: "已截止 · 待开奖", drawnS: "已开奖",
+  soonTitle: "抽奖即将开放",
+  soonSub: (n: number) => `报名暂未开放,敬请期待。开放后每持有 ${n.toLocaleString()} 枚 $${TOKEN_SYMBOL} 即可获得 1 张带编号奖券。`,
+  soonEligible: (a: number) => `按你当前持仓,开放后你将拥有约 ${a} 张奖券。`,
   totalTickets: "奖券总数", players: "参与人数",
   endsIn: "距截止", ended: "已到截止", awaitingDraw: "等待开奖", tba: "待定",
   connectTitle: "连接钱包参与抽奖",
@@ -315,7 +331,10 @@ const EN = {
   title: "Holder Raffle",
   sub: (n: number) => `Every ${n.toLocaleString()} $${TOKEN_SYMBOL} you hold = 1 numbered ticket. One winning number is drawn on-chain at the deadline for a real prize.`,
   prizeTag: "This round's prize",
-  open: "Live · open", closedS: "Closed · awaiting draw", drawnS: "Drawn",
+  open: "Live · open", soonS: "Coming soon", closedS: "Closed · awaiting draw", drawnS: "Drawn",
+  soonTitle: "Raffle opens soon",
+  soonSub: (n: number) => `Entries aren't open yet — stay tuned. When it goes live, every ${n.toLocaleString()} $${TOKEN_SYMBOL} you hold earns 1 numbered ticket.`,
+  soonEligible: (a: number) => `Based on your current holdings, you'll have about ${a} ticket(s) when it opens.`,
   totalTickets: "Total tickets", players: "Entrants",
   endsIn: "Ends in", ended: "Deadline reached", awaitingDraw: "Awaiting draw", tba: "TBA",
   connectTitle: "Connect wallet to enter",

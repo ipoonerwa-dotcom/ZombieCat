@@ -15,7 +15,7 @@ import { PRODUCTS } from "./products";
 export type Range = [number, number];
 
 export interface RaffleConfig {
-  status: "open" | "closed" | "drawn";
+  status: "soon" | "open" | "closed" | "drawn";
   deadline: string; // ISO or ""
   tokensPerTicket: number;
   prizeSlug: string;
@@ -51,7 +51,7 @@ export async function getRaffleConfig(): Promise<RaffleConfig> {
     getSetting(SETTING_KEYS.rafflePrizeCount),
   ]);
   const perTicket = Number(tpt) > 0 ? Number(tpt) : 100000;
-  let s = (status as RaffleConfig["status"]) || "open";
+  let s = (status as RaffleConfig["status"]) || "soon";
   // auto-close once past the deadline (until drawn)
   if (s === "open" && deadline && Date.now() > new Date(deadline).getTime()) s = "closed";
   return {

@@ -27,7 +27,7 @@ const DEFAULTS: Record<string, string> = {
   [SETTING_KEYS.overseasShipCents]: "1900",
   [SETTING_KEYS.tokenAddress]: process.env.NEXT_PUBLIC_TOKEN_ADDRESS ?? "",
   [SETTING_KEYS.storeAddress]: process.env.NEXT_PUBLIC_STORE_ADDRESS ?? "",
-  [SETTING_KEYS.raffleStatus]: "open",
+  [SETTING_KEYS.raffleStatus]: "soon",
   [SETTING_KEYS.raffleDeadline]: "",
   [SETTING_KEYS.raffleTokensPerTicket]: "100000",
   [SETTING_KEYS.raffleIssued]: "0",

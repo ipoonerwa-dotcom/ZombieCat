@@ -431,6 +431,8 @@ h1, h2, h3 { font-weight: 800; line-height: 1.06; letter-spacing: -0.02em; font-
 .rp-open { color: #46d17a; border-color: rgba(70,209,122,0.4); } .rp-open .dot { background: #46d17a; box-shadow: 0 0 8px #46d17a; }
 .rp-closed { color: #e6b23c; border-color: rgba(230,178,60,0.4); } .rp-closed .dot { background: #e6b23c; box-shadow: 0 0 8px #e6b23c; }
 .rp-drawn { color: var(--red); border-color: rgba(238,29,43,0.4); } .rp-drawn .dot { background: var(--red); box-shadow: 0 0 8px var(--red); }
+.rp-soon { color: var(--muted); border-color: var(--line); } .rp-soon .dot { background: #b9b3b4; box-shadow: 0 0 8px rgba(255,255,255,0.5); }
+.soon-preview { margin-top: 4px; font-size: 13.5px; color: var(--fg); background: var(--panel-solid); border: 1px solid rgba(238,29,43,0.3); border-radius: 8px; padding: 10px 14px; max-width: 360px; }
 .rp-count-row { display: flex; gap: 26px; padding-top: 4px; border-top: 1px solid var(--line-soft); }
 .rp-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
 .rp-v { font-size: 20px; font-weight: 800; }
