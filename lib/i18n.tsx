@@ -138,6 +138,8 @@ const DICT: Record<Lang, Record<string, string>> = {
     "video.title": "魔鬼猫宣传片",
     "video.tbc": "TO BE CONTINUED",
     "video.sub": "视频内容制作中,敬请期待。",
+    "video.tagline": "吞噬负能量 · 进入魔鬼猫宇宙",
+    "video.hint": "点击播放,右下角可开启声音",
 
     "gallery.download": "下载原图",
 
@@ -346,6 +348,8 @@ const DICT: Record<Lang, Record<string, string>> = {
     "video.title": "ZombiesCat Films",
     "video.tbc": "TO BE CONTINUED",
     "video.sub": "Video content is in production — stay tuned.",
+    "video.tagline": "Devours negative energy · Enter the ZombiesCat universe",
+    "video.hint": "Tap to play · unmute from the controls",
 
     "gallery.download": "Download",
 
