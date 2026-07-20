@@ -119,7 +119,7 @@ const DICT: Record<Lang, Record<string, string>> = {
     "checkout.donenote": "你的 $ZCAT 已销毁，订单已记录。我们会尽快按你填写的地址发货，如需核对可凭订单号联系我们。",
 
     "nav.ip": "IP 文化",
-    "nav.founder": "创始人",
+    "nav.founder": "艺术家",
     "nav.memes": "MEME",
     "nav.video": "视频",
 
@@ -337,7 +337,7 @@ const DICT: Record<Lang, Record<string, string>> = {
     "checkout.donenote": "Your $ZCAT has been burned and your order is recorded. We'll ship to the address you provided — keep your order number for reference.",
 
     "nav.ip": "The IP",
-    "nav.founder": "Founder",
+    "nav.founder": "Artist",
     "nav.memes": "Memes",
     "nav.video": "Video",
 
