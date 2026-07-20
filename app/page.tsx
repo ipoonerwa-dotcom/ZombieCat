@@ -97,8 +97,8 @@ export default function Home() {
               </div>
               <Link href="/ip" className="btn btn-primary reveal reveal-d3">{t("home.ip.cta")}</Link>
             </div>
-            <div className="hero-visual reveal reveal-d2" style={{ aspectRatio: "4/3" }}>
-              <img src="/brand/standard-3d.jpg" alt="ZombiesCat standard model" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <div className="hero-visual reveal reveal-d2" style={{ aspectRatio: "1080 / 1282" }}>
+              <img src="/brand/ufo-charging.jpg" alt="ZombiesCat — Charging · devours negative energy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           </div>
         </div>
