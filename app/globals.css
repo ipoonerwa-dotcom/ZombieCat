@@ -123,6 +123,19 @@ h1, h2, h3 { font-weight: 800; line-height: 1.06; letter-spacing: -0.02em; font-
 .chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 8px var(--red); animation: pulse 2s infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
+/* founder honor card (below the portrait) */
+.founder-honor {
+  margin-top: 14px; background: var(--panel); border: 1px solid rgba(238, 29, 43, 0.28);
+  border-radius: var(--radius-sm); padding: 15px 17px;
+  box-shadow: 0 0 34px -16px rgba(238, 29, 43, 0.5);
+}
+.fh-head {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 9px;
+  font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--red);
+}
+.fh-head .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 8px var(--red); animation: pulse 2s infinite; flex: none; }
+.fh-body { font-size: 13.5px; line-height: 1.72; color: rgba(240, 235, 236, 0.9); }
+
 .grid { display: grid; gap: 18px; }
 .grid-2 { grid-template-columns: repeat(2, 1fr); }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }

@@ -14,21 +14,28 @@ export default function FounderPage() {
       <div className="wrap">
         <div className="checkout-grid" style={{ alignItems: "start", gap: 40 }}>
           {/* portrait */}
-          <div className="reveal" style={{ position: "relative" }}>
-            <div className="hero-visual" style={{ aspectRatio: "3/4", background: "#0f0c0d" }}>
-              <img
-                src="/brand/founder.jpg"
-                alt="Yuhai — Founder of ZOMBIESCAT"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-              <div className="scanline" />
+          <div className="reveal">
+            <div style={{ position: "relative" }}>
+              <div className="hero-visual" style={{ aspectRatio: "3/4", background: "#0f0c0d" }}>
+                <img
+                  src="/brand/founder.jpg"
+                  alt="Yuhai — Founder of ZOMBIESCAT"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+                <div className="scanline" />
+              </div>
+              <div
+                className="chip"
+                style={{ position: "absolute", left: 14, bottom: 14, background: "rgba(10,7,8,0.85)" }}
+              >
+                <span className="dot" />
+                {t("founder.rank")}
+              </div>
             </div>
-            <div
-              className="chip"
-              style={{ position: "absolute", left: 14, bottom: 14, background: "rgba(10,7,8,0.85)" }}
-            >
-              <span className="dot" />
-              {t("founder.rank")}
+
+            <div className="founder-honor">
+              <div className="fh-head"><span className="dot" />{t("founder.honor.head")}</div>
+              <p className="fh-body">{t("founder.honor.body")}</p>
             </div>
           </div>
 
