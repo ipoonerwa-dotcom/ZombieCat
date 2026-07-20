@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
-import { ZCAT_CA, EXPLORER_BASE, TOKEN_SYMBOL } from "@/lib/tokenConfig";
+import { ZCAT_CA, EXPLORER_BASE, DEXSCREENER_URL, TOKEN_SYMBOL } from "@/lib/tokenConfig";
 
 // Copyable official-contract badge. variant="hero" is the big homepage bar;
 // variant="footer" is the compact inline row.
@@ -38,6 +38,14 @@ export default function ContractBadge({ variant = "footer" }: { variant?: "hero"
       </button>
       <a className="ca-link" href={`${EXPLORER_BASE}/token/${ZCAT_CA}`} target="_blank" rel="noopener noreferrer" title={t("token.verify")}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+      </a>
+      <a className="ca-dex" href={DEXSCREENER_URL} target="_blank" rel="noopener noreferrer" title={t("token.chart")}>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 3v18h18" />
+          <path d="M7 14l3-4 3 3 4-6" />
+        </svg>
+        <span className="ca-dex-txt">{t("token.chart")}</span>
+        <span className="ca-live" />
       </a>
     </div>
   );

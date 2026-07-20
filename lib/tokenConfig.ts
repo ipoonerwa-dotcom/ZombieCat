@@ -10,3 +10,5 @@ export const DEAD_ADDRESS = "0x000000000000000000000000000000000000dEaD" as cons
 // Official, live $ZCAT contract on Robinhood Chain — shown on the site for verification.
 export const ZCAT_CA = "0x9db8665c94b06330f3cfd62386a379aec7707777" as const;
 export const EXPLORER_BASE = "https://robinhoodchain.blockscout.com" as const;
+// DexScreener pair page for live chart / trading.
+export const DEXSCREENER_URL = "https://dexscreener.com/robinhood/0x78794436c7b2b44ffcb62899c265e951d032ed91" as const;

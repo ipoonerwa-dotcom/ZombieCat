@@ -144,6 +144,7 @@ const DICT: Record<Lang, Record<string, string>> = {
     "token.official": "官方合约",
     "token.copy": "复制合约地址",
     "token.verify": "在区块浏览器查看",
+    "token.chart": "行情/交易",
 
     "home.ip.kicker": "MEET THE IP · 认识魔鬼猫",
     "home.ip.title": "吞噬负能量的外星猫",
@@ -351,6 +352,7 @@ const DICT: Record<Lang, Record<string, string>> = {
     "token.official": "Official contract",
     "token.copy": "Copy contract address",
     "token.verify": "View on block explorer",
+    "token.chart": "Chart / Trade",
 
     "home.ip.kicker": "MEET THE IP",
     "home.ip.title": "The alien cat that devours negativity",

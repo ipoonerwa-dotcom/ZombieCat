@@ -369,6 +369,15 @@ h1, h2, h3 { font-weight: 800; line-height: 1.06; letter-spacing: -0.02em; font-
   border: 1px solid var(--line-soft); transition: color 0.2s, border-color 0.2s;
 }
 .ca-link:hover { color: var(--red); border-color: var(--red); }
+.ca-dex {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: #fff; background: var(--red); border-radius: 999px; padding: 8px 15px;
+  box-shadow: 0 4px 18px -6px rgba(238,29,43,0.6); transition: transform 0.15s, box-shadow 0.25s, background 0.2s;
+}
+.ca-dex:hover { background: var(--red-bright); transform: translateY(-1px); box-shadow: 0 8px 26px -6px rgba(238,29,43,0.8); }
+.ca-dex .ca-live { width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px rgba(255,255,255,0.9); animation: pulse 1.6s infinite; }
+@media (max-width: 560px) { .ca-dex .ca-dex-txt { display: none; } }
 
 .ca-hero {
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
