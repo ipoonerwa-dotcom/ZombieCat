@@ -62,9 +62,38 @@ model OrderItem {
   @@index([orderId])
 }
 
-// Admin-editable key/values: zcat_per_usd, token_address, store_address, overseas_ship_cents
+// Admin-editable key/values: zcat_per_usd, token_address, store_address, overseas_ship_cents,
+// raffle_status, raffle_deadline, raffle_tokens_per_ticket, raffle_issued, raffle_prize_slug,
+// raffle_prize_count, raffle_winning_number, raffle_winner_address, raffle_seed_block, raffle_seed_hash
 model Setting {
   key       String   @id
   value     String
   updatedAt DateTime @updatedAt
+}
+
+// HODL raffle: 1 numbered ticket per N tokens held. Tickets are committed by the holder
+// (choose how many), each maps to a contiguous number range in `ranges` (JSON [[start,end],...]).
+// One winning number is drawn at the deadline. Shipping (PII) lives ONLY here, off-chain.
+model RaffleParticipant {
+  id          String   @id @default(cuid())
+  address     String   @unique              // lower-cased wallet
+  tickets     Int      @default(0)          // total committed ticket count
+  ranges      String   @default("[]")       // JSON [[start,end],...] inclusive, 1-based
+  balanceWei  String   @default("0")        // token balance snapshot at last entry
+  chainId     Int      @default(4663)
+
+  // shipping (PII — off-chain only), collected at entry so the winner can be shipped
+  recipient   String   @default("")
+  phone       String   @default("")
+  country     String   @default("")
+  region      String   @default("")
+  city        String   @default("")
+  addressLine String   @default("")
+  postalCode  String   @default("")
+  note        String   @default("")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([tickets])
 }

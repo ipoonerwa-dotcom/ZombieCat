@@ -13,6 +13,7 @@ import { useCart } from "@/lib/cart";
 const LINKS: { href: string; key: string }[] = [
   { href: "/", key: "nav.home" },
   { href: "/shop", key: "nav.shop" },
+  { href: "/raffle", key: "nav.raffle" },
   { href: "/ip", key: "nav.ip" },
   { href: "/founder", key: "nav.founder" },
   { href: "/memes", key: "nav.memes" },
